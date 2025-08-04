@@ -1,0 +1,526 @@
+/**
+ * Air Quality Checker - Stylesheet
+ * 
+ * @author Vikas Jha
+ * @version 1.0.0
+ * @date August 2025
+ * @description Custom styles for the Air Quality Checker web application
+ *              featuring responsive design, animations, and modern UI components.
+ * 
+ * Copyright (c) 2025 Vikas Jha. All rights reserved.
+ */
+
+/* Custom Styles for Air Quality Checker */
+
+:root {
+  --happy-bg: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+  --neutral-bg: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  --sad-bg: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  --transition-speed: 0.5s;
+}
+
+body {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Card styling */
+.card {
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.card-header {
+  border-radius: 20px 20px 0 0 !important;
+}
+
+/* Input styling */
+.input-group-text {
+  border: none;
+  border-radius: 10px 0 0 10px;
+}
+
+.form-control {
+  border: none;
+  border-radius: 0 10px 10px 0;
+  font-size: 1.1rem;
+  padding: 12px 16px;
+}
+
+.form-control:focus {
+  border-color: #0d6efd;
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+/* Button styling */
+.btn-primary {
+  border-radius: 10px;
+  border: none;
+  font-weight: 600;
+  padding: 12px 24px;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(13, 110, 253, 0.3);
+}
+
+/* Reset button styling */
+.btn-outline-secondary {
+  border-radius: 8px;
+  font-size: 0.875rem;
+  padding: 6px 12px;
+  transition: all 0.3s ease;
+  border-width: 1px;
+}
+
+.btn-outline-secondary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 15px rgba(108, 117, 125, 0.2);
+}
+
+/* Enhanced error handling styles */
+.form-control.is-invalid {
+  border-color: #dc3545;
+  animation: shake 0.5s ease-in-out;
+  box-shadow: 0 0 0 0.25rem rgba(220, 53, 69, 0.25);
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translateX(-5px);
+  }
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translateX(5px);
+  }
+}
+
+/* Enhanced alert styles */
+.alert {
+  border-radius: 10px;
+  border: none;
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.alert-warning {
+  background-color: #fff3cd;
+  color: #856404;
+  border-left: 4px solid #ffc107;
+}
+
+.alert-info {
+  background-color: #d1ecf1;
+  color: #0c5460;
+  border-left: 4px solid #17a2b8;
+}
+
+.alert-danger {
+  background-color: #f8d7da;
+  color: #721c24;
+  border-left: 4px solid #dc3545;
+}
+
+/* Form feedback styles */
+.form-text.text-success {
+  color: #198754 !important;
+  font-weight: 500;
+}
+
+.form-text.text-warning {
+  color: #fd7e14 !important;
+  font-weight: 500;
+}
+
+.form-text.text-muted {
+  transition: all 0.3s ease;
+}
+
+/* Loading state enhancements */
+.btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* Hover effect for better UX */
+.form-control:hover:not(:focus) {
+  border-color: #86b7fe;
+  transition: border-color 0.3s ease;
+}
+
+/* Focus improvements */
+.form-control:focus {
+  border-color: #0d6efd;
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+  transform: scale(1.02);
+  transition: all 0.3s ease;
+}
+
+/* Health recommendations styling */
+#healthRecommendations {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+#healthRecommendations .card-header {
+  background: transparent;
+  border-bottom: 2px solid #dee2e6;
+}
+
+#healthTipsList {
+  list-style: none;
+  padding-left: 0;
+}
+
+#healthTipsList li {
+  background: white;
+  padding: 10px 15px;
+  margin-bottom: 8px;
+  border-radius: 8px;
+  border-left: 4px solid #6c757d;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+#healthTipsList li:hover {
+  transform: translateX(5px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Health recommendation alert colors */
+.alert-success {
+  background-color: #d1f2eb;
+  color: #0f5132;
+  border-left-color: #198754;
+}
+
+.alert-warning {
+  background-color: #fff3cd;
+  color: #856404;
+  border-left-color: #ffc107;
+}
+
+.alert-danger {
+  background-color: #f8d7da;
+  color: #721c24;
+  border-left-color: #dc3545;
+}
+
+/* Success state tips */
+.alert-success + #healthTips li {
+  border-left-color: #198754;
+}
+
+/* Warning state tips */
+.alert-warning + #healthTips li {
+  border-left-color: #ffc107;
+}
+
+/* Danger state tips */
+.alert-danger + #healthTips li {
+  border-left-color: #dc3545;
+}
+
+/* Icon styling */
+.fas.fa-shield-heart {
+  color: #dc3545;
+}
+
+.fas.fa-lightbulb {
+  color: #ffc107;
+}
+
+/* External link styling */
+#healthRecommendations a {
+  color: #6c757d;
+  transition: color 0.3s ease;
+}
+
+#healthRecommendations a:hover {
+  color: #0d6efd;
+}
+
+/* Mood character container */
+.mood-background {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--neutral-bg);
+  transition: all var(--transition-speed) ease;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.mood-background::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: inherit;
+  border-radius: 50%;
+  opacity: 0.3;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.1;
+  }
+}
+
+.mood-character {
+  font-size: 3.5rem;
+  z-index: 2;
+  position: relative;
+  transition: all var(--transition-speed) ease;
+  animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+/* Pulse animation for input field reset */
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(13, 110, 253, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(13, 110, 253, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(13, 110, 253, 0);
+  }
+}
+
+/* Mood states */
+.mood-happy {
+  background: var(--happy-bg);
+}
+
+.mood-neutral {
+  background: var(--neutral-bg);
+}
+
+.mood-sad {
+  background: var(--sad-bg);
+}
+
+/* Results card styling */
+#resultsCard {
+  animation: slideUp 0.5s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* AQI value styling */
+#aqiValue {
+  font-weight: 700;
+  color: #333;
+}
+
+/* Weather card styling */
+.bg-light {
+  background-color: #f8f9fa !important;
+  border-radius: 10px;
+}
+
+/* Alert styling */
+.alert {
+  border-radius: 10px;
+  border: none;
+}
+
+/* Loading spinner */
+.fa-spinner {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 576px) {
+  .container-fluid {
+    padding: 15px;
+  }
+
+  .card-body {
+    padding: 20px !important;
+  }
+
+  .mood-background {
+    width: 100px;
+    height: 100px;
+  }
+
+  .mood-character {
+    font-size: 3rem;
+  }
+
+  .input-group-lg .form-control {
+    font-size: 1rem;
+  }
+}
+
+/* Hover effects */
+.card:hover {
+  transform: translateY(-5px);
+  transition: transform 0.3s ease;
+}
+
+/* Focus states for accessibility */
+.form-control:focus,
+.btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+/* Custom scrollbar for better aesthetics */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Footer styling */
+.footer-section {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 20px;
+  margin-top: 30px;
+}
+
+.footer-section h6 {
+  font-weight: 600;
+  color: #495057;
+}
+
+.footer-section a {
+  color: #6c757d;
+  transition: all 0.3s ease;
+}
+
+.footer-section a:hover {
+  color: #0d6efd;
+  transform: translateY(-1px);
+}
+
+.footer-section .border-top {
+  border-color: rgba(108, 117, 125, 0.2) !important;
+}
+
+.footer-section .text-primary {
+  font-weight: 600;
+}
+
+/* Copyright section styling */
+.footer-section .border-top p {
+  color: #495057;
+  font-weight: 500;
+}
+
+/* Source links hover effects */
+.footer-section small a::before {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 1px;
+  bottom: -2px;
+  left: 0;
+  background-color: #0d6efd;
+  transition: width 0.3s ease;
+}
+
+.footer-section small a {
+  position: relative;
+}
+
+.footer-section small a:hover::before {
+  width: 100%;
+}
+
+/* Icons in footer */
+.footer-section i {
+  transition: transform 0.3s ease;
+}
+
+.footer-section a:hover i {
+  transform: scale(1.1);
+}

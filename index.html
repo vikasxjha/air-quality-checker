@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Check air quality by Indian pincode with health recommendations from American Lung Association. Get real-time AQI data and personalized safety tips."
+    />
+    <meta
+      name="keywords"
+      content="air quality, AQI, pollution, pincode, health recommendations, India, environmental health, Vikas Jha"
+    />
+    <meta name="author" content="Vikas Jha" />
+    <meta name="robots" content="index, follow" />
+    <meta
+      property="og:title"
+      content="Air Quality Checker - Real-time AQI by Pincode"
+    />
+    <meta
+      property="og:description"
+      content="Check air quality by Indian pincode and get health recommendations based on current pollution levels."
+    />
+    <meta property="og:type" content="website" />
+    <title>Air Quality Checker - Real-time AQI by Pincode | Vikas Jha</title>
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome for icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div
+      class="container-fluid min-vh-100 d-flex align-items-center justify-content-center"
+    >
+      <div class="row w-100 justify-content-center">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+          <div class="card shadow-lg border-0">
+            <div class="card-header bg-primary text-white text-center py-4">
+              <h1 class="h3 mb-0">
+                <i class="fas fa-wind me-2"></i>
+                Air Quality Checker
+              </h1>
+              <p class="mb-0 mt-2 opacity-75">Check air quality by pincode</p>
+            </div>
+
+            <div class="card-body p-4">
+              <!-- Input Section -->
+              <div class="mb-4">
+                <div class="input-group input-group-lg">
+                  <span class="input-group-text bg-light">
+                    <i class="fas fa-map-marker-alt text-primary"></i>
+                  </span>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="pincodeInput"
+                    placeholder="Enter your pincode (e.g., 110001)"
+                    maxlength="6"
+                    pattern="[0-9]{6}"
+                  />
+                </div>
+                <div class="form-text">Enter a 6-digit Indian pincode</div>
+              </div>
+
+              <!-- Check Button -->
+              <button
+                class="btn btn-primary btn-lg w-100 mb-4"
+                id="checkButton"
+                onclick="checkAirQuality()"
+              >
+                <span id="buttonText">
+                  <i class="fas fa-search me-2"></i>
+                  Check Air Quality
+                </span>
+                <span id="loadingSpinner" class="d-none">
+                  <i class="fas fa-spinner fa-spin me-2"></i>
+                  Loading...
+                </span>
+              </button>
+
+              <!-- Alert for errors -->
+              <div
+                id="errorAlert"
+                class="alert alert-danger d-none"
+                role="alert"
+              >
+                <div class="d-flex align-items-start">
+                  <i class="fas fa-exclamation-triangle me-2 mt-1"></i>
+                  <div id="errorMessage" class="flex-grow-1"></div>
+                </div>
+              </div>
+
+              <!-- Results Section -->
+              <div id="resultsCard" class="card border-0 d-none">
+                <div class="card-body p-0">
+                  <!-- Reset Button -->
+                  <div class="text-end mb-3">
+                    <button
+                      class="btn btn-outline-secondary btn-sm"
+                      id="resetButton"
+                      onclick="resetPage()"
+                      title="Check another pincode"
+                    >
+                      <i class="fas fa-redo-alt me-1"></i>
+                      New Search
+                    </button>
+                  </div>
+
+                  <!-- Mood Character -->
+                  <div class="text-center mb-4 position-relative">
+                    <div id="moodBackground" class="mood-background">
+                      <div id="moodCharacter" class="mood-character">😊</div>
+                    </div>
+                    <h4 id="aqiStatus" class="mt-3 mb-1"></h4>
+                    <p id="locationInfo" class="text-muted mb-0"></p>
+                  </div>
+
+                  <!-- AQI Information -->
+                  <div class="row g-3 mb-4">
+                    <div class="col-6">
+                      <div class="bg-light rounded p-3 text-center">
+                        <div class="h4 mb-1" id="aqiValue">--</div>
+                        <small class="text-muted">AQI (US)</small>
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <div class="bg-light rounded p-3 text-center">
+                        <div class="h6 mb-1" id="mainPollutant">--</div>
+                        <small class="text-muted">Main Pollutant</small>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Weather Information -->
+                  <div class="card bg-light border-0 mb-4">
+                    <div class="card-header bg-transparent border-0 pb-2">
+                      <h6 class="mb-0">
+                        <i class="fas fa-thermometer-half me-2"></i>
+                        Weather Information
+                      </h6>
+                    </div>
+                    <div class="card-body pt-0">
+                      <div class="row g-3">
+                        <div class="col-4 text-center">
+                          <div class="h6 mb-1" id="temperature">--</div>
+                          <small class="text-muted">Temperature</small>
+                        </div>
+                        <div class="col-4 text-center">
+                          <div class="h6 mb-1" id="humidity">--</div>
+                          <small class="text-muted">Humidity</small>
+                        </div>
+                        <div class="col-4 text-center">
+                          <div class="h6 mb-1" id="windSpeed">--</div>
+                          <small class="text-muted">Wind Speed</small>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Health Recommendations -->
+                  <div id="healthRecommendations" class="card border-0">
+                    <div class="card-header bg-transparent border-0 pb-2">
+                      <h6 class="mb-0">
+                        <i class="fas fa-shield-heart me-2"></i>
+                        <span id="healthTitle">Health Recommendations</span>
+                      </h6>
+                    </div>
+                    <div class="card-body pt-0">
+                      <div id="healthMessage" class="alert mb-3" role="alert">
+                        <i class="fas fa-info-circle me-2"></i>
+                        <span id="healthMessageText"></span>
+                      </div>
+                      <div id="healthTips">
+                        <h6 class="mb-2">
+                          <i class="fas fa-lightbulb me-2"></i>
+                          Recommended Actions:
+                        </h6>
+                        <ul id="healthTipsList" class="mb-0">
+                          <!-- Tips will be populated by JavaScript -->
+                        </ul>
+                      </div>
+                      <div class="mt-3">
+                        <small class="text-muted">
+                          <i class="fas fa-external-link-alt me-1"></i>
+                          Tips from
+                          <a
+                            href="https://www.lung.org/clean-air/outdoors/10-tips-to-protect-yourself"
+                            target="_blank"
+                            class="text-decoration-none"
+                            >American Lung Association</a
+                          >
+                        </small>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Footer -->
+          <div class="footer-section text-center mt-4">
+            <!-- Data Sources -->
+            <div class="mb-3">
+              <h6 class="text-muted mb-2">
+                <i class="fas fa-info-circle me-2"></i>
+                Data Sources & Attribution
+              </h6>
+              <small class="text-muted d-block mb-1">
+                <i class="fas fa-wind me-1"></i>
+                Air quality data:
+                <a
+                  href="https://www.iqair.com/air-pollution-data-api"
+                  target="_blank"
+                  class="text-decoration-none"
+                  rel="noopener"
+                  >IQAir AirVisual API</a
+                >
+              </small>
+              <small class="text-muted d-block mb-1">
+                <i class="fas fa-map-marker-alt me-1"></i>
+                Location data:
+                <a
+                  href="https://api.postalpincode.in"
+                  target="_blank"
+                  class="text-decoration-none"
+                  rel="noopener"
+                  >Indian Postal Pincode API</a
+                >
+              </small>
+              <small class="text-muted d-block mb-1">
+                <i class="fas fa-shield-heart me-1"></i>
+                Health recommendations:
+                <a
+                  href="https://www.lung.org/clean-air/outdoors/10-tips-to-protect-yourself"
+                  target="_blank"
+                  class="text-decoration-none"
+                  rel="noopener"
+                  >American Lung Association</a
+                >
+              </small>
+              <small class="text-muted d-block">
+                <i class="fab fa-bootstrap me-1"></i>
+                UI Framework:
+                <a
+                  href="https://getbootstrap.com"
+                  target="_blank"
+                  class="text-decoration-none"
+                  rel="noopener"
+                  >Bootstrap 5</a
+                >
+                &
+                <a
+                  href="https://fontawesome.com"
+                  target="_blank"
+                  class="text-decoration-none"
+                  rel="noopener"
+                  >Font Awesome</a
+                >
+              </small>
+            </div>
+
+            <!-- Copyright -->
+            <div class="border-top pt-3">
+              <p class="mb-1">
+                <i class="fas fa-code me-2"></i>
+                <strong>Developed by Vikas Jha</strong>
+              </p>
+              <small class="text-muted">
+                © 2025 Vikas Jha. All rights reserved. |
+                <span class="text-primary">Air Quality Checker</span>
+              </small>
+              <div class="mt-2">
+                <small class="text-muted">
+                  Built with ❤️ for environmental awareness and public health
+                </small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JavaScript -->
+    <script src="script.js"></script>
+  </body>
+</html>
